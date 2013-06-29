@@ -8,14 +8,14 @@ import de.aufgabe11.ana.main.Account;
 import de.aufgabe11.ana.main.CashMachine;
 import de.aufgabe11.ana.main.View;
 
-public class KontoStand implements ActionListener {
+public class KarteAusgeben implements ActionListener {
 	// Model
 	private CashMachine<Account> cashMachine;
 	// View
 	private View view;
 
 	// Konstruktor
-	public KontoStand(CashMachine<Account> cashMachine) {
+	public KarteAusgeben(CashMachine<Account> cashMachine) {
 		this.cashMachine = cashMachine;
 	}
 
@@ -25,14 +25,10 @@ public class KontoStand implements ActionListener {
 
 	// Action
 	public void actionPerformed(ActionEvent e) {
-
 		try {
-			view.updateViewKS(cashMachine.accountStatementToString());// Fuehrt
-																		// die
-																		// benoetigten
-																		// Aenderungen
-																		// in
-																		// View
+			cashMachine.ejectCashCard();// Ausgabe der Karte in CashMachien
+			view.updateViewKarteAus();// Fuehrt die benoetigten Aenderungen in
+										// View
 		} catch (CardNotInsertedException e1) {
 			view.InfoSchreiben(e1);
 		}
